@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>Job Recommendation System</h1>
+    <form action="/results" method="post">
+        <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" name="query" placeholder="Enter job title, description, skills or keywords...">
+        </div>
+        
+        <h2 class="filters-heading">Filter Results</h2>
+        <div class="filters">
+            <div class="filter-group">
+                <label>Overall Rating:</label>
+                <select name="min_rating">
+                    <option value="0">All</option>
+                    <option value="4">4 stars and up</option>
+                    <option value="3">3 stars and up</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Career Opportunities:</label>
+                <select name="min_career_opportunities">
+                    <option value="0">All</option>
+                    <option value="4">4 stars and up</option>
+                    <option value="3">3 stars and up</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Compensation and Benefits:</label>
+                <select name="min_compensation">
+                    <option value="0">All</option>
+                    <option value="4">4 stars and up</option>
+                    <option value="3">3 stars and up</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Senior Management:</label>
+                <select name="min_senior_management">
+                    <option value="0">All</option>
+                    <option value="4">4 stars and up</option>
+                    <option value="3">3 stars and up</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Work/Life Balance:</label>
+                <select name="min_work_life">
+                    <option value="0">All</option>
+                    <option value="4">4 stars and up</option>
+                    <option value="3">3 stars and up</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Culture & Values:</label>
+                <select name="min_culture">
+                    <option value="0">All</option>
+                    <option value="4">4 stars and up</option>
+                    <option value="3">3 stars and up</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Diversity & Inclusion:</label>
+                <select name="min_diversity">
+                    <option value="0">All</option>
+                    <option value="4">4 stars and up</option>
+                    <option value="3">3 stars and up</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Recommend:</label>
+                <select name="recommend">
+                    <option value="">All</option>
+                    <option value="Positive">Positive</option>
+                    <option value="Mild">Mild</option>
+                    <option value="No opinion">No opinion</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>CEO Approval:</label>
+                <select name="ceo_approval">
+                    <option value="">All</option>
+                    <option value="Positive">Positive</option>
+                    <option value="Mild">Mild</option>
+                    <option value="No opinion">No opinion</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Business Outlook:</label>
+                <select name="business_outlook">
+                    <option value="">All</option>
+                    <option value="Positive">Positive</option>
+                    <option value="Mild">Mild</option>
+                    <option value="No opinion">No opinion</option>
+                </select>
+            </div>
+        </div>
+        
+        <button type="submit"><i class="fas fa-search"></i> Find Jobs</button>
+    </form>
+</body>
+</html>

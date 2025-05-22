@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+</head>
+<body>
+    <h1>Job Results</h1>
+    <ul>
+        {% for job in jobs %}
+        <li>
+            <strong>{{ job['title'] }}</strong> - {{ job['job'] }}<br>
+            <b>Pros:</b> {{ job['pros'] }}<br>
+            <b>Cons:</b> {{ job['cons'] }}<br>
+            <b>Rating:</b> {{ job['rating'] }}<br>
+            <b>Recommend:</b> {{ job['Recommend'] }}<br>
+            <b>CEO Approval:</b> {{ job['CEO Approval'] }}<br>
+            <b>Business Outlook:</b> {{ job['Business Outlook'] }}<br>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="/">Back to search</a>
+</body>
+</html>

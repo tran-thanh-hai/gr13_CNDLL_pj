@@ -1,23 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Results</title>
+    <title>Job Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='results.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <h1>Job Results</h1>
-    <ul>
+    <h1>Job Search Results</h1>
+    <div class="search-info">
+        <p>Found {{ total_jobs }} results for "{{ query }}"</p>
+        <a href="/" class="back-link"><i class="fas fa-search"></i> New Search</a>
+    </div>
+    
+    <div class="results">
         {% for job in jobs %}
-        <li>
-            <strong>{{ job['title'] }}</strong> - {{ job['job'] }}<br>
-            <b>Pros:</b> {{ job['pros'] }}<br>
-            <b>Cons:</b> {{ job['cons'] }}<br>
-            <b>Rating:</b> {{ job['rating'] }}<br>
-            <b>Recommend:</b> {{ job['Recommend'] }}<br>
-            <b>CEO Approval:</b> {{ job['CEO Approval'] }}<br>
-            <b>Business Outlook:</b> {{ job['Business Outlook'] }}<br>
-        </li>
+        <div class="job-item">
+            <div class="job-title">{{ job['job'] }}</div>
+            <div class="job-detail"><strong>Title:</strong> {{ job['title'] }}</div>
+            <div class="job-detail"><strong>Pros:</strong> {{ job['pros'] }}</div>
+            <div class="job-detail"><strong>Cons:</strong> {{ job['cons'] }}</div>
+            <div class="job-detail"><strong>Rating:</strong> {{ job['rating'] }} ★</div>
+            <div class="job-detail"><strong>Career Opportunities:</strong> {{ job['Career Opportunities'] }} ★</div>
+            <div class="job-detail"><strong>Compensation:</strong> {{ job['Compensation and Benefits'] }} ★</div>
+            <div class="job-detail"><strong>Work/Life Balance:</strong> {{ job['Work/Life Balance'] }} ★</div>
+            <div class="job-detail"><strong>Senior Management:</strong> {{ job['Senior Management'] }} ★</div>
+            <div class="job-detail"><strong>Culture & Values:</strong> {{ job['Culture & Values'] }} ★</div>
+            <div class="job-detail"><strong>Diversity & Inclusion:</strong> {{ job['Diversity & Inclusion'] }} ★</div>
+            <div class="job-detail"><strong>Recommend:</strong> {{ job['Recommend'] }}</div>
+            <div class="job-detail"><strong>CEO Approval:</strong> {{ job['CEO Approval'] }}</div>
+            <div class="job-detail"><strong>Business Outlook:</strong> {{ job['Business Outlook'] }}</div>
+        </div>
         {% endfor %}
+    </div>
+    
+    <!-- Phân trang -->
+    {% if total_pages > 1 %}
+    <ul class="pagination">
+        {% if current_page > 1 %}
+        <li>
+            <a href="/results?query={{ query }}&min_rating={{ min_rating }}&min_career={{ min_career }}&min_compensation={{ min_compensation }}&min_management={{ min_management }}&min_work_life={{ min_work_life }}&min_culture={{ min_culture }}&min_diversity={{ min_diversity }}&recommend={{ recommend }}&ceo_approval={{ ceo_approval }}&business_outlook={{ business_outlook }}&page={{ current_page - 1 }}"><i class="fas fa-chevron-left"></i></a>
+        </li>
+        {% endif %}
+        
+        {% for page_num in range(1, total_pages + 1) %}
+            {% if page_num == current_page %}
+            <li class="active"><a href="#">{{ page_num }}</a></li>
+            {% elif page_num >= current_page - 2 and page_num <= current_page + 2 %}
+            <li>
+                <a href="/results?query={{ query }}&min_rating={{ min_rating }}&min_career={{ min_career }}&min_compensation={{ min_compensation }}&min_management={{ min_management }}&min_work_life={{ min_work_life }}&min_culture={{ min_culture }}&min_diversity={{ min_diversity }}&recommend={{ recommend }}&ceo_approval={{ ceo_approval }}&business_outlook={{ business_outlook }}&page={{ page_num }}">{{ page_num }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+        
+        {% if current_page < total_pages %}
+        <li>
+            <a href="/results?query={{ query }}&min_rating={{ min_rating }}&min_career={{ min_career }}&min_compensation={{ min_compensation }}&min_management={{ min_management }}&min_work_life={{ min_work_life }}&min_culture={{ min_culture }}&min_diversity={{ min_diversity }}&recommend={{ recommend }}&ceo_approval={{ ceo_approval }}&business_outlook={{ business_outlook }}&page={{ current_page + 1 }}"><i class="fas fa-chevron-right"></i></a>
+        </li>
+        {% endif %}
     </ul>
-    <a href="/">Back to search</a>
+    {% endif %}
+    
+    <a href="/" class="back-link"><i class="fas fa-home"></i> Return to Search</a>
 </body>
 </html>
